@@ -11,13 +11,13 @@ var stocks;
             perftext.innerHTML ="The stock is " ;
             
             if(stocks[0].o < stocks[0].c) {
-                indic.src = "./chevron-up-svgrepo-com (1).svg";
+                indic.src = "./src/img/chevron-up-svgrepo-com (1).svg";
                 price.style.color = "green" ;
                 // symbol.innerHTML = "Up";
                 perftext.innerHTML += `better by ${(stocks[0].c - stocks[0].o).toFixed(3)} points`;
             }
             else  {
-                indic.src = "./chevron-down-svgrepo-com (1).svg";
+                indic.src = "./src/img/chevron-down-svgrepo-com (1).svg";
                 price.style.color = "red" ;
                 // symbol.innerHTML = "Low";
                 perftext.innerHTML += `worse by ${(stocks[0].o - stocks[0].c).toFixed(3)} points`;
