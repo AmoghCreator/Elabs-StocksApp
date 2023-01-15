@@ -1,0 +1,29 @@
+body {
+            display: flex;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+        }
+        #master {
+            text-align: center;
+        }
+        #stockInp:focus, #stockInp {
+            font-size: 2em;
+            text-align: center;
+            border : none;
+            outline: none;
+            margin-top: 10vh;
+            border-bottom: 0.22em solid blue;
+        }
+        #result {
+            font-size:2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        #perftext {
+            flex-basis: 100%;
+            
+        }
