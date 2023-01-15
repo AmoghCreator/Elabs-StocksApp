@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stocks App</title>
+    <style>
+        body {
+            display: flex;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+        }
+        #master {
+            text-align: center;
+        }
+        #stockInp:focus, #stockInp {
+            font-size: 2em;
+            text-align: center;
+            border : none;
+            outline: none;
+        }
+        #inputfield {
+            border-bottom: 0.8em solid blue;
+        }
+        #result {
+            font-size:2em;
+        }
+    </style>
+</head>
+<body>
+    <div id="master">
+            <h1>Search name of the stocks you want to know the performance of !</h1>
+            <span id = "inputfield">
+                <input type="text" name="" id="stockInp" value="AAPL">
+            </span>
+            <!-- <button type="button" onclick="getStocks()">Submit</button> -->
+            <div id="result">
+                <img src="" alt="" widht="" id="indic">
+                <h2 id="price" style="display:inline-block">NULL</h2>
+                <h2 id="symbol" style="display:inline-block">NULL</h2>
+            </div>
+    </div>
+    <script>
+        var stocks;
+        async function getStocks() {
+            await fetch(`https://api.polygon.io/v2/aggs/ticker/${document.getElementById("stockInp").value.toUpperCase()}/range/1/day/2023-01-09/2023-01-09?adjusted=true&sort=asc&limit=120&apiKey=bhKFpZCDAVPM30oSedy1jvAnBwBsZtnn`).then(resp => resp.json()).then(data => {stocks = data.results })
+            stocks.map(data => console.log((document.getElementById("stockInp").value)));
+            
+            var symbol =  document.getElementById("symbol");
+            if(stocks[0].o < stocks[0].c) {
+                document.getElementById("indic").src = "./chevron-up-svgrepo-com (1).svg";
+                document.getElementById("price").style.color = "green" ;
+                symbol.innerHTML = "Up"
+            }
+            else  {
+                document.getElementById("indic").src = "./chevron-down-svgrepo-com (1).svg";
+                document.getElementById("price").style.color = "red" ;
+                symbol.innerHTML = "Low"
+            }
+
+            document.getElementById("price").innerHTML = stocks[0].c;
+            console.log(stocks[0]);
+        }
+        getStocks();
+        window.addEventListener('keydown' ,(e)=> {if(e.key == 'Enter') {getStocks() ; console.log(stocks[0])}});
+        //RZ4Q467QXGXYTWGI
+    </script>
+</body>
+</html>
